@@ -283,16 +283,6 @@
             },
             {
                 id: 3,
-                title: 'Processamento Assíncrono de Batidas de Ponto',
-                shortDescription: 'Aplicação para gerenciar batidas de ponto de funcionários.',
-                fullDescription: `Este projeto foi desenvolvido para resolver o desafio de integrar e processar de forma confiável um alto volume de batidas de ponto geradas pela plataforma PontoMais. A solução implementa uma arquitetura orientada a eventos, garantindo escalabilidade e desacoplamento entre os serviços.
-<br /><br />O fluxo se inicia com o recebimento das batidas em tempo real através de um webhook. Para garantir que nenhuma informação seja perdida, mesmo em momentos de pico ou instabilidade dos sistemas, cada batida é imediatamente enfileirada em uma fila de mensagens (Message Queue).
-<br /><br />Um serviço consumidor assíncrono, atuando de forma independente, processa as mensagens da fila. Sua responsabilidade é enriquecer os dados recebidos: ele utiliza o CPF do colaborador para consultar a API do sistema TOTVS RM e obter a matrícula correspondente.
-<br /><br />Após a validação e o enriquecimento dos dados, o registro de ponto completo é finalmente persistido em uma base de dados centralizada, servindo como uma fonte unificada e confiável para a área de Recursos Humanos. Essa abordagem assíncrona eliminou a necessidade de processos manuais, reduziu a latência e aumentou drasticamente a confiabilidade da operação.`,
-                images: ['./projects/timetracking/service_bus.png', './projects/timetracking/banco_de_dados.png']
-            },
-            {
-                id: 4,
                 title: 'Plataforma de Pesquisa de Clima Organizacional Anônima e Segura',
                 shortDescription: 'Aplicação para pesquisas de clima, garantindo anonimato e controle de acesso para mais de 8.000 colaboradores.',
                 fullDescription: `Este projeto foi concebido para executar uma pesquisa de clima organizacional em uma empresa de grande porte (+8.000 colaboradores), com dois requisitos críticos e conflitantes: garantir que cada colaborador pudesse responder apenas uma vez e, ao mesmo tempo, assegurar o completo anonimato de suas respostas.
@@ -300,6 +290,16 @@
 <br /><br />O ponto-chave da arquitetura é a dissociação total entre os dados de controle e os dados da pesquisa. Enquanto uma tabela de controle registra quais colaboradores já participaram (para evitar duplicidade), as respostas são armazenadas em uma tabela separada, sem qualquer chave estrangeira ou vínculo que permita identificar o respondente.
 <br /><br />Ao final, a plataforma consolida os dados de forma anônima e os segmenta por área e nível de gestão, permitindo que o RH e a liderança extraiam insights estratégicos valiosos para a tomada de decisão, com a confiança de que a privacidade dos colaboradores foi integralmente preservada.`,
                 images: ['./projects/survey/banco_de_dados.png']
+            },
+            {
+                id: 4,
+                title: 'Processamento Assíncrono de Batidas de Ponto',
+                shortDescription: 'Aplicação para gerenciar batidas de ponto de funcionários.',
+                fullDescription: `Este projeto foi desenvolvido para resolver o desafio de integrar e processar de forma confiável um alto volume de batidas de ponto geradas pela plataforma PontoMais. A solução implementa uma arquitetura orientada a eventos, garantindo escalabilidade e desacoplamento entre os serviços.
+<br /><br />O fluxo se inicia com o recebimento das batidas em tempo real através de um webhook. Para garantir que nenhuma informação seja perdida, mesmo em momentos de pico ou instabilidade dos sistemas, cada batida é imediatamente enfileirada em uma fila de mensagens (Message Queue).
+<br /><br />Um serviço consumidor assíncrono, atuando de forma independente, processa as mensagens da fila. Sua responsabilidade é enriquecer os dados recebidos: ele utiliza o CPF do colaborador para consultar a API do sistema TOTVS RM e obter a matrícula correspondente.
+<br /><br />Após a validação e o enriquecimento dos dados, o registro de ponto completo é finalmente persistido em uma base de dados centralizada, servindo como uma fonte unificada e confiável para a área de Recursos Humanos. Essa abordagem assíncrona eliminou a necessidade de processos manuais, reduziu a latência e aumentou drasticamente a confiabilidade da operação.`,
+                images: ['./projects/timetracking/service_bus.png', './projects/timetracking/banco_de_dados.png']
             }
         ];
 
