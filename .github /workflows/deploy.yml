@@ -1,0 +1,37 @@
+name: gustavoantonio.com
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      DNS: ${{ vars.DNS }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2.1.5'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+      - name: Upload files
+        run: gsutil -m rsync -r -x '(\.git/|\.github/|\.gcloudignore|\.gitignore|README.*|.*\.md|.*\.log|node_modules/|gha-creds-.*\.json)' . gs://$DNS
+
+      - name: IAM Policy
+        run: gcloud storage buckets add-iam-policy-binding gs://$DNS --member=allUsers --role=roles/storage.objectViewer
+
+      - name: Set entry point
+        run: gsutil web set -m index.html gs://$DNS
